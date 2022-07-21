@@ -1,32 +1,16 @@
 const express = require("express");
-const fetch = require("node-fetch");
-const app = express();
-const port = 4000;
-const URL =
-  "https://propetro-qa.intelie.com/services/plugin-propetro-intern-virtual/propetro/integrations/intern/virtual/active-pump-values-by-pump/";
+const dotenv = require("dotenv");
+const postRoute = require("./routes/pumps");
+const cors = require("cors");
 
-const proxyurl = "https://cors.bridged.cc/";
+var app = express();
+app.use(cors());
 
-async function getIntelliData(url = URL) {
-  fetch(url, {
-    method: "POST",
-    mode: "cors",
-    cache: "no-cache",
-    headers: {
-      Authorization:
-        "Basic aW50ZXJudmlydHVhbC1xYUBpbnRlbGllLmNvbS5icjo0YjJ3I3B6c0w0UDk=",
-    },
-    body: {},
-  })
-    .then((res) => res.json())
-    .then((json) => console.log(json))
-    .catch((err) => console.error(err));
-}
+dotenv.config();
 
-app.get("/", (req, res) => {
-  getIntelliData();
-  res.send("data");
-});
+const port = process.env.PORT || 4000;
+
+app.use("/api/v1/pumps", postRoute);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
