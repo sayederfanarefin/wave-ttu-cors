@@ -1,9 +1,9 @@
 const express = require("express");
-const { getPumps } = require("../controller/pumps");
+const { getWaveAPI } = require("../controller/wave");
 const cors = require("cors");
 
 const router = express.Router();
 
-router.get("/", cors(), getPumps);
+router.get("/", cors(), getWaveAPI);
 
 module.exports = router;
