@@ -4,6 +4,6 @@ const cors = require("cors");
 
 const router = express.Router();
 
-router.get("/", cors(), getWaveAPI);
+router.post("/", cors(), getWaveAPI);
 
 module.exports = router;
