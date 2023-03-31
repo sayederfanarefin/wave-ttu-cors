@@ -1,4 +1,3 @@
-const dotenv = require("dotenv");
 const fetch = require("node-fetch");
 
 const URL = "http://wave.ttu.edu/ajax.php/";
